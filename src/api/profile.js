@@ -9,12 +9,12 @@ export const getOneProfile = (user, id) => {
   })
 }
 
-export const createProfile = (user, name, aboutMe) => {
+export const createProfile = (user, name, about) => {
   return axios.post(`${apiUrl}/profiles/`,
     {
       profile: {
         name,
-        aboutMe
+        about
       }
     },
     {
@@ -24,12 +24,12 @@ export const createProfile = (user, name, aboutMe) => {
     })
 }
 
-export const editProfile = (user, id, name, aboutMe) => {
-  return axios.patch(`${apiUrl}/profiles/${id}/edit`,
+export const editProfile = (user, id, name, about) => {
+  return axios.patch(`${apiUrl}/profiles/${id}`,
     {
       profile: {
         name,
-        aboutMe
+        about
       }
     },
     {
@@ -40,7 +40,7 @@ export const editProfile = (user, id, name, aboutMe) => {
 }
 
 export const deleteProfile = (user, id) => {
-  return axios.delete(`${apiUrl}/profiles/${id}/delete`,
+  return axios.delete(`${apiUrl}/profiles/${id}`,
     {
       headers: {
         Authorization: `Bearer ${user.token}`
