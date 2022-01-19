@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import { withRouter } from 'react-router-dom'
 
 import { signOut } from '../../api/auth'
 import { signOutSuccess } from '../AutoDismissAlert/messages'
@@ -25,4 +24,4 @@ class SignOut extends Component {
   }
 }
 
-export default withRouter(SignOut)
+export default SignOut

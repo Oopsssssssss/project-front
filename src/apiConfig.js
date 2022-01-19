@@ -1,7 +1,9 @@
 let apiUrl
+// Be sure to put a "homepage" in package.json
+
 const apiUrls = {
   production: 'https://aqueous-atoll-85096.herokuapp.com',
-  development: 'http://localhost:4741'
+  development: 'https://localhost:4741'
 }
 
 if (window.location.hostname === 'localhost') {

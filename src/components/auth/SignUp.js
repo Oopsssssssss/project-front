@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
 import { signUpSuccess, signUpFailure } from '../AutoDismissAlert/messages'
@@ -98,4 +97,4 @@ render () {
 }
 }
 
-export default withRouter(SignUp)
+export default SignUp
