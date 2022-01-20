@@ -38,7 +38,7 @@ export const signOut = (user) => {
   })
 }
 
-export const changePassword = (passwords, user) => {
+export const changePassword = (oldPassword, newPassword, user) => {
   return axios({
     url: apiUrl + '/change-password/',
     method: 'PATCH',
@@ -47,8 +47,8 @@ export const changePassword = (passwords, user) => {
     },
     data: {
       passwords: {
-        old: passwords.oldPassword,
-        new: passwords.newPassword
+        old: oldPassword,
+        new: newPassword
       }
     }
   })
