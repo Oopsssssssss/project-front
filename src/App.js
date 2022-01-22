@@ -31,7 +31,7 @@ const App = () => {
 
   return (
     <>
-      {msgAlerts.map((msgAlert) => (
+      {msgAlerts.map(msgAlert => (
         <AutoDismissAlert
           key={msgAlert.id}
           heading={msgAlert.heading}
@@ -66,11 +66,7 @@ const App = () => {
             element={<Profile user={user} msgAlert={msgAlert} />}
           />
 
-          <Route
-            path= '/chat'
-            element= {<Chat/>}
-          />
-
+          <Route path='/chat' element={<Chat user={user} />} />
         </Routes>
       </main>
     </>
