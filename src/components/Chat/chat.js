@@ -1,72 +1,19 @@
-import React, { useState, useEffect } from 'react'
-import queryString from 'query-string'
-import io from 'socket.io-client'
-
-import textContainer from '../TextContainer/textContainer'
-import Messages from '../Messages/Messages'
-import InfoBar from '../InfoBar/InfoBar'
-import Input from '../Input/Input'
-
+// import React from 'react'
 import './chat.scss'
+// import { io } from 'socket.io-client'
+import { io } from 'socket.io-client'
+// import socketClient from 'socket.io-client'
+const SERVER = 'http://localhost:4741'
 
-const ENDPOINT = 'https://project-chat-application.herokuapp.com/'
-
-let socket
-
-const chat = ({ location }) => {
-  const [name, setName] = useState('')
-  const [room, setRoom] = useState('')
-  const [users, setUsers] = useState('')
-  const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([])
-
-  useEffect(() => {
-    const { name, room } = queryString.parse(location.search)
-
-    socket = io(ENDPOINT)
-
-    setRoom(room)
-    setName(name)
-
-    socket.emit('join', { name, room }, (error) => {
-      if (error) {
-        console.log(error)
-      }
-    })
-  }, [ENDPOINT, location.search])
-
-  useEffect(() => {
-    socket.on('message', (message) => {
-      setMessages((messages) => [...messages, message])
-    })
-
-    socket.on('roomData', ({ users }) => {
-      setUsers(users)
-    })
-  }, [])
-
-  const sendMessage = (event) => {
-    event.preventDefault()
-
-    if (message) {
-      socket.emit('sendMessage', message, () => setMessage(''))
-    }
+const socket = io(SERVER, {
+  withCredentials: true,
+  extraHeaders: {
+    'my-custom-header': 'abcd'
   }
+})
 
-  return (
-    <div className='outerContainer'>
-      <div className='container'>
-        <infoBar room={room} />
-        <messages messages={messages} name={name} />
-        <input
-          message={message}
-          setMessage={setMessage}
-          sendMessage={sendMessage}
-        />
-      </div>
-      <textContainer users={users} />
-    </div>
-  )
-}
+const Chat = socket.on('connect', () => {
+  console.log(socket.connected) // true
+})
 
-export default chat
+export default Chat

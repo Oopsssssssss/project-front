@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom'
 
 const appJsx = (
   <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <script src='/socket.io/socket.io.js'></script>
+    <script>var socket = io();</script>
     <App />
   </BrowserRouter>
 )
