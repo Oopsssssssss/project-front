@@ -9,7 +9,7 @@ import {
   profileCreateFailure
 } from '../AutoDismissAlert/messages'
 
-const ProfileCreate = ({ user, msgAlert }) => {
+const ProfileCreate = ({ user, setUser, msgAlert }) => {
   const [name, setName] = useState('')
   const [aboutMe, setAboutMe] = useState('')
   const [shouldNavigate, setShouldNavigate] = useState(false)
@@ -18,9 +18,10 @@ const ProfileCreate = ({ user, msgAlert }) => {
     event.preventDefault()
 
     try {
-      await createProfile(user, name, aboutMe).then(profile => {
-        user.profile = profile
-      })
+      await createProfile(user, name, aboutMe)
+        .then(res => {
+          user.profile = res.data.profile
+        })
       msgAlert({
         heading: 'Profile Creation Success',
         message: profileCreateSuccess,
