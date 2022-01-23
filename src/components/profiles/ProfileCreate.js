@@ -4,18 +4,24 @@ import { createProfile } from '../../api/profile'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { profileCreateSuccess, profileCreateFailure } from '../AutoDismissAlert/messages'
+import {
+  profileCreateSuccess,
+  profileCreateFailure
+} from '../AutoDismissAlert/messages'
 
-const ProfileCreate = ({ user, msgAlert }) => {
+const ProfileCreate = ({ user, setUser, msgAlert }) => {
   const [name, setName] = useState('')
   const [aboutMe, setAboutMe] = useState('')
   const [shouldNavigate, setShouldNavigate] = useState(false)
 
-  const onProfileCreate = async (event) => {
+  const onProfileCreate = async event => {
     event.preventDefault()
 
     try {
       await createProfile(user, name, aboutMe)
+        .then(res => {
+          user.profile = res.data.profile
+        })
       msgAlert({
         heading: 'Profile Creation Success',
         message: profileCreateSuccess,
@@ -40,7 +46,7 @@ const ProfileCreate = ({ user, msgAlert }) => {
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Sign In</h3>
+        <h3>Create Your Profile</h3>
 
         <Form onSubmit={onProfileCreate}>
           <Form.Group className='mb-3' controlId='name'>
@@ -50,7 +56,7 @@ const ProfileCreate = ({ user, msgAlert }) => {
               placeholder='Profile Name'
               required
               value={name}
-              onChange={(event) => setName(event.target.value)}
+              onChange={event => setName(event.target.value)}
             />
           </Form.Group>
 
@@ -61,7 +67,7 @@ const ProfileCreate = ({ user, msgAlert }) => {
               value={aboutMe}
               type='aboutMe'
               placeholder='Tell us a bit about yourself'
-              onChange={(event) => setAboutMe(event.target.value)}
+              onChange={event => setAboutMe(event.target.value)}
             />
           </Form.Group>
 

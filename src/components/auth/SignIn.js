@@ -20,6 +20,7 @@ const SignIn = ({ setUser, msgAlert }) => {
       // to create a user
       const res = await signIn(email, password)
       setUser(res.data.user)
+      console.log(res.data.user)
       msgAlert({
         heading: 'Sign In Success!',
         message: signInSuccess,

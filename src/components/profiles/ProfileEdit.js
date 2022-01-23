@@ -12,7 +12,7 @@ import {
 const ProfileEdit = ({ user, msgAlert }) => {
   const [name, setName] = useState('')
   const [aboutMe, setAboutMe] = useState('')
-  const [shouldNavigate, setShouldNavigate] = useState(false)
+  const [updated, setUpdated] = useState(false)
   const { id } = useParams()
 
   const onProfileEdit = async (event) => {
@@ -25,7 +25,7 @@ const ProfileEdit = ({ user, msgAlert }) => {
         message: profileEditSuccess,
         variant: 'success'
       })
-      setShouldNavigate(true)
+      setUpdated(true)
     } catch (error) {
       msgAlert({
         heading: 'Profile Edit failed with error: ' + error.message,
@@ -37,14 +37,14 @@ const ProfileEdit = ({ user, msgAlert }) => {
     }
   }
 
-  if (shouldNavigate) {
-    return <Navigate to='/' />
+  if (updated) {
+    return <Navigate to={`/profiles/${id}`} />
   }
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Sign In</h3>
+        <h3>Edit Your Profile</h3>
 
         <Form onSubmit={onProfileEdit}>
           <Form.Group className='mb-3' controlId='name'>

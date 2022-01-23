@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import queryString from 'query-string'
-import { io } from 'socket.io-client'
-import './chat.scss'
+import io from 'socket.io-client'
+import './Chat.css'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -12,7 +12,7 @@ const socket = io('http://localhost:4741', {
 
 const Chat = ({ user }) => {
   const [name, setName] = useState('')
-  const [chat, setChat] = useState([])
+  const [chat, setChat] = useState({})
   const [message, setMessage] = useState('')
 
   useEffect(() => {
@@ -21,9 +21,6 @@ const Chat = ({ user }) => {
       setName(user.profile.name)
     })
     console.log('user ', user)
-  })
-  socket.on('connect', () => {
-    console.log(socket.id) // "G5p5..."
   })
 
   const handleChange = event => {

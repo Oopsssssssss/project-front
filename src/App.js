@@ -11,6 +11,8 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import Profile from './components/profiles/Profile'
+import ProfileCreate from './components/profiles/ProfileCreate'
+import ProfileEdit from './components/profiles/ProfileEdit'
 import Home from './components/Home'
 import Chat from './components/Chat/Chat'
 
@@ -62,8 +64,16 @@ const App = () => {
             }
           />
           <Route
-            path='/profiles/'
+            path='/profiles/:id'
             element={<Profile user={user} msgAlert={msgAlert} />}
+          />
+          <Route
+            path='/profiles/:id/edit'
+            element={<ProfileEdit user={user} msgAlert={msgAlert} />}
+          />
+          <Route
+            path='/profiles/create'
+            element={<ProfileCreate user={user} setUser={setUser} msgAlert={msgAlert} />}
           />
 
           <Route path='/chat' element={<Chat user={user} />} />

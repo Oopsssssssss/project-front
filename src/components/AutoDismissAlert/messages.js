@@ -10,3 +10,4 @@ export const profileCreateFailure = 'Failed to create a profile. Please check yo
 export const profileEditSuccess = 'Profile successfully updated! Get busy chatting!'
 export const profileEditFailure = 'Failed to update your profile. Please check inputs and try again.'
 export const profileDeleteSuccess = 'Profile successfully deleted. Sad to see you go!'
+export const profileFindError = 'Uh oh. We couldn\'t find the profile you were looking for'
