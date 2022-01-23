@@ -14,7 +14,7 @@ import Profile from './components/profiles/Profile'
 import ProfileCreate from './components/profiles/ProfileCreate'
 import ProfileEdit from './components/profiles/ProfileEdit'
 import Home from './components/Home'
-import Chat from './components/Chat/Chat'
+import Chat from './components/Chat/chat'
 
 const App = () => {
   const [user, setUser] = useState(null)

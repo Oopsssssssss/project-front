@@ -44,11 +44,9 @@
 
     "react-scripts": "4.0.3",
 
-    "resolve": "^1.18.1",
-
-    "socket.io-client": "^4.4.1",
-
     "react-scroll-to-bottom": "^4.2.0",
+
+    "resolve": "^1.18.1",
 
     "web-vitals": "^1.1.2"
 
@@ -165,3 +163,4 @@
   }
 
 }
+

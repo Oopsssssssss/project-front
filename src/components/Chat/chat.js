@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import queryString from 'query-string'
-import io from 'socket.io-client'
-import './Chat.css'
+import { io } from 'socket.io-client'
+import './chat.scss'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -12,15 +12,19 @@ const socket = io('http://localhost:4741', {
 
 const Chat = ({ user }) => {
   const [name, setName] = useState('')
-  const [chat, setChat] = useState({})
+  const [chat, setChat] = useState([])
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    socket.on('message', ({ name, message }) => {
-      setChat({ name, message })
-      setName(user.profile.name)
+    setName(user.profile.name)
+    socket.on('message', (chatObject) => {
+      setChat(chat.push(chatObject))
+      console.log(chatObject)
     })
-    console.log('user ', user)
+    console.log('name is ', name)
+  })
+  socket.on('connect', () => {
+    console.log(socket.id)
   })
 
   const handleChange = event => {
@@ -31,19 +35,27 @@ const Chat = ({ user }) => {
   const onMessageSubmit = event => {
     event.preventDefault()
     const chatObject = { name, message }
+    console.log(chatObject)
     socket.emit('message', chatObject)
-    setName({ message: '', name })
   }
 
-  const renderChat = () => {
-    return chat.map(({ name, message }, index) => (
-      <div key={index}>
-        <h3>
-          {name}: <span>{message}</span>
-        </h3>
-      </div>
-    ))
-  }
+  // const renderChat = () => {
+  //   return chat.map(({ name, message }, index) => (
+  //     <div key={index}>
+  //       <h3>
+  //         {name}: <span>{message}</span>
+  //       </h3>
+  //     </div>
+  //   ))
+  // }
+
+  const chatMessages = chat.map(({ name, message }, index) => (
+    <div key={index}>
+      <li>
+        {name}: <span>{message}</span>
+      </li>
+    </div>
+  ))
 
   return (
     <div className='row'>
@@ -65,7 +77,7 @@ const Chat = ({ user }) => {
             Submit
           </Button>
         </Form>
-        <div>{renderChat()}</div>
+        <ul>{chatMessages}</ul>
       </div>
     </div>
   )
