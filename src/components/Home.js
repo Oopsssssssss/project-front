@@ -1,10 +1,17 @@
 import React from 'react'
-
+import '../Home.scss'
+import '../img/Message.png'
 const Home = () => {
   return (
     <>
-      <h1>This is where a Home Page will go</h1>
-      <h4>Maybe like a cool picture or something</h4>
+      <div className='title'>
+        <h1>Socket to Me</h1>
+      </div>
+      <div className='image-container'>
+        <img className='photo' src={require('../img/Message.png').default} />
+      </div>
+      <p>Unique</p>
+      <p>Socket</p>
     </>
   )
 }

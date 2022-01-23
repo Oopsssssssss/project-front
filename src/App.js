@@ -12,7 +12,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import Profile from './components/profiles/Profile'
 import Home from './components/Home'
-import Chat from './components/Chat/Chat'
+import Chat from './components/Chat/chat'
 
 const App = () => {
   const [user, setUser] = useState(null)

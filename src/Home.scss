@@ -1,0 +1,32 @@
+@import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Sedgwick+Ave&display=swap');
+
+body {
+   background: linear-gradient(
+  90deg,
+  rgba(165, 165, 204, 1) 2%,
+  rgba(165, 165, 204, 1) 23%,
+  rgba(232, 232, 240, 1) 58%,
+  rgba(0, 212, 255, 1) 100%
+);
+
+}
+
+ h1 {
+     text-align:center;
+     font-family: 'Sedgwick Ave', cursive;
+ }
+
+.photo {
+    display: flex;
+    height: 250px;
+    width: 250px;
+    transform: rotate(-10deg);
+}
+
+.image-container {
+    display: flex;
+    justify-content: right;
+    align-items: right ;
+}
