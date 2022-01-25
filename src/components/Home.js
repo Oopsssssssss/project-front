@@ -40,6 +40,13 @@ const Home = () => {
         <h3 className='Title'>iPhone Support</h3>
         <p className='TitleDescription'>Support to the most popular line up, that is correct<br></br> iphone will support Socket app, so not need to worry just<br></br> sit down and socket. </p>
       </div>
+      <div className='idea5'>
+        <img className='Picture5' src={require('../img/Texting 5.jpeg').default}/>
+      </div>
+      <div className='img5-description'>
+        <h3 className='Title'>Android Support</h3>
+        <p className='TitleDescription'>And Why not?, We also decide <br></br> to bring Android support, because we love you.</p>
+      </div>
     </>
   )
 }
