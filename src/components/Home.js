@@ -1,17 +1,45 @@
 import React from 'react'
 import '../Home.scss'
-import '../img/Message.png'
 const Home = () => {
   return (
     <>
       <div className='title'>
         <h1>Socket to Me</h1>
       </div>
-      <div className='image-container'>
-        <img className='photo' src={require('../img/Message.png').default} />
+      <div className='description'>
+        <h2>Revolutionary idea</h2>
+        <h2>Unique + texting + different</h2>
+        <h2>And</h2>
+        <h2>Socket</h2>
       </div>
-      <p>Unique</p>
-      <p>Socket</p>
+      <div className='idea1'>
+        <img className='Picture1' src={require('../img/Texting 1.png').default}/>
+      </div>
+      <div className='img-description'>
+        <h3 className='Title'>Unique Socket Experience</h3>
+        <p className='TitleDescription'>With Socket Message you will discover a unique Experience,<br></br> that is design to enjoy and fulfill the user interaction.</p>
+      </div>
+      <div className='idea2'>
+        <img className='Picture2' src={require('../img/Texting 3.jpeg').default}/>
+      </div>
+      <div className='img2-description'>
+        <h3 className='Title'>Texting Socket </h3>
+        <p className='TitleDescription'>With Unique texting Experience,<br></br> like never before, meet people and make friend in the way.</p>
+      </div>
+      <div className='idea3'>
+        <img className='Picture3' src={require('../img/Texting 4.jpeg').default} />
+      </div>
+      <div className='img3-description'>
+        <h3 className='Title'>Different From Competition</h3>
+        <p className='TitleDescription'>Thats correct, different from competition,<br></br> unique socket, unique user, unique you.</p>
+      </div>
+      <div className='idea4'>
+        <img className='Picture4' src={require('../img/Texting 6.webp').default}/>
+      </div>
+      <div className='img4-description'>
+        <h3 className='Title'>iPhone Support</h3>
+        <p className='TitleDescription'>Support to the most popular line up, that is correct<br></br> iphone will support Socket app, so not need to worry just<br></br> sit down and socket. </p>
+      </div>
     </>
   )
 }
