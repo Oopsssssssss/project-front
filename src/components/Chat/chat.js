@@ -1,66 +1,52 @@
 import React, { useState, useEffect } from 'react'
 // import queryString from 'query-string'
 import { io } from 'socket.io-client'
-import './chat.scss'
-
+// import './chat.scss'
+// import TextContainer from './TextContainer'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
+// this is where we will add the heroku app link
 const socket = io('http://localhost:4741', {
   withCredentials: true
 })
 
 const Chat = ({ user }) => {
-  const [name, setName] = useState('')
   const [chat, setChat] = useState([])
-  const [message, setMessage] = useState('')
+  const [chatState, setChatState] = useState({ message: '', name: user.profile.name })
 
   useEffect(() => {
-    setName(user.profile.name)
-    socket.on('message', (chatObject) => {
-      setChat(chat.push(chatObject))
-      console.log(chatObject)
+    socket.on('message', ({ name, message }) => {
+      setChat([...chat, { name, message }])
     })
-    console.log('name is ', name)
-  })
-  socket.on('connect', () => {
-    console.log(socket.id)
   })
 
   const handleChange = event => {
-    setMessage(event.target.value)
-    console.log('message ', message, '  val ', event.target.value)
+    setChatState({ ...chatState, [event.target.name]: event.target.value })
+    console.log('name ', event.target.name, '  val ', event.target.value)
   }
 
   const onMessageSubmit = event => {
     event.preventDefault()
-    const chatObject = { name, message }
-    console.log(chatObject)
-    socket.emit('message', chatObject)
+    const { name, message } = chatState
+    socket.emit('message', { name, message })
+    setChatState({ message: '', name })
   }
 
-  // const renderChat = () => {
-  //   return chat.map(({ name, message }, index) => (
-  //     <div key={index}>
-  //       <h3>
-  //         {name}: <span>{message}</span>
-  //       </h3>
-  //     </div>
-  //   ))
-  // }
-
-  const chatMessages = chat.map(({ name, message }, index) => (
-    <div key={index}>
-      <li>
-        {name}: <span>{message}</span>
-      </li>
-    </div>
-  ))
+  const chatMessages = () => {
+    return chat.map(({ name, message }, index) => (
+      <div key={index}>
+        <h3>
+          {name}: <span>{message}</span>
+        </h3>
+      </div>
+    ))
+  }
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Messenger</h3>
+        <ul>{chatMessages()}</ul>
         <Form onSubmit={onMessageSubmit}>
           <Form.Group controlId='message'>
             <Form.Label>Message</Form.Label>
@@ -68,7 +54,7 @@ const Chat = ({ user }) => {
               required
               type='text'
               name='message'
-              value={message}
+              value={chatState.message}
               placeholder='Enter message'
               onChange={e => handleChange(e)}
             />
@@ -77,10 +63,8 @@ const Chat = ({ user }) => {
             Submit
           </Button>
         </Form>
-        <ul>{chatMessages}</ul>
       </div>
     </div>
   )
 }
-
 export default Chat
