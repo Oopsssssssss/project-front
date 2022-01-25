@@ -7,7 +7,7 @@ const Home = () => {
         <h1>Socket to Me</h1>
       </div>
       <div className='description'>
-        <h2>Revolutionary idea</h2>
+        <h2>Revolutionary  idea</h2>
         <h2>Unique + texting + different</h2>
         <h2>And</h2>
         <h2>Socket</h2>
@@ -46,6 +46,18 @@ const Home = () => {
       <div className='img5-description'>
         <h3 className='Title'>Android Support</h3>
         <p className='TitleDescription'>And Why not?, We also decide <br></br> to bring Android support, because we love you.</p>
+      </div>
+      < div className='idea6'>
+        <img className='Cool1' src={require('../img/Message4.png').default}/>
+      </div>
+      <div className='idea7'>
+        <img className='Cool2' src={require('../img/Message2.png').default}/>
+      </div>
+      <div className='idea8'>
+        <img className='Cool3' src={require('../img/Message3.png').default} />
+      </div>
+      <div className='idea9'>
+        <img className='Cool4' src={require('../img/Message6.png').default} />
       </div>
     </>
   )
