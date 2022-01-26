@@ -28,6 +28,9 @@ const Chat = ({ user }) => {
     socket.on('message', ({ name, message }) => {
       setChat([...chat, { name, message }])
     })
+    return () => {
+      socket.off('message')
+    }
   })
 
   const handleChange = event => {
