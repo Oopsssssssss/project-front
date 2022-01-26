@@ -14,6 +14,7 @@ import Profile from './components/profiles/Profile'
 import ProfileCreate from './components/profiles/ProfileCreate'
 import ProfileEdit from './components/profiles/ProfileEdit'
 import Home from './components/Home'
+import Rules from './components/Rules'
 import Chat from './components/Chat/chat'
 
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
 
   return (
     <>
-      {msgAlerts.map(msgAlert => (
+      {msgAlerts.map((msgAlert) => (
         <AutoDismissAlert
           key={msgAlert.id}
           heading={msgAlert.heading}
@@ -45,6 +46,7 @@ const App = () => {
       <main className='container'>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/rules' element={<Rules />} />
           <Route
             path='/sign-up'
             element={<SignUp setUser={setUser} msgAlert={msgAlert} />}
@@ -73,7 +75,13 @@ const App = () => {
           />
           <Route
             path='/profiles/create'
-            element={<ProfileCreate user={user} setUser={setUser} msgAlert={msgAlert} />}
+            element={
+              <ProfileCreate
+                user={user}
+                setUser={setUser}
+                msgAlert={msgAlert}
+              />
+            }
           />
 
           <Route path='/chat' element={<Chat user={user} />} />
