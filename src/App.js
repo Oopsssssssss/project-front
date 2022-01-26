@@ -1,95 +1,86 @@
 /* eslint-disable no-tabs */
-import React, { Component, Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
-import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
+// import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/Header/Header'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import Profile from './components/profiles/Profile'
+import ProfileCreate from './components/profiles/ProfileCreate'
+import ProfileEdit from './components/profiles/ProfileEdit'
+import Home from './components/Home'
+import Chat from './components/Chat/chat'
 
-class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      user: null,
-      msgAlerts: []
-    }
-  }
+const App = () => {
+  const [user, setUser] = useState(null)
+  const [msgAlerts, setMsgAlerts] = useState([])
+  console.log(setMsgAlerts)
 
-  setUser = (user) => this.setState({ user })
+  const clearUser = () => setUser(null)
 
-  clearUser = () => this.setState({ user: null })
-
-  deleteAlert = (id) => {
-    this.setState((state) => {
-      return { msgAlerts: state.msgAlerts.filter((msg) => msg.id !== id) }
-    })
-  }
-
-  msgAlert = ({ heading, message, variant }) => {
+  const msgAlert = ({ heading, message, variant }) => {
     const id = uuid()
-    this.setState((state) => {
-      return {
-        msgAlerts: [...state.msgAlerts, { heading, message, variant, id }]
-      }
+    console.log(id)
+    setMsgAlerts(prevMsgAlerts => {
+      return [...prevMsgAlerts, { heading, message, variant, id }]
     })
   }
 
-  render () {
-    const { msgAlerts, user } = this.state
-
-    return (
-      <Fragment>
-	      <Header user={user} />
-	      {msgAlerts.map((msgAlert) => (
-          <AutoDismissAlert
-            key={msgAlert.id}
-            heading={msgAlert.heading}
-            variant={msgAlert.variant}
-            message={msgAlert.message}
-            id={msgAlert.id}
-            deleteAlert={this.deleteAlert}
-          />
-        ))}
-	      <main className='container'>
-	        <Route
+  return (
+    <>
+      {msgAlerts.map(msgAlert => (
+        <AutoDismissAlert
+          key={msgAlert.id}
+          heading={msgAlert.heading}
+          variant={msgAlert.variant}
+          message={msgAlert.message}
+        />
+      ))}
+      <Header user={user} />
+      <main className='container'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route
             path='/sign-up'
-            render={() => (
-              <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
-            )}
+            element={<SignUp setUser={setUser} msgAlert={msgAlert} />}
           />
           <Route
             path='/sign-in'
-            render={() => (
-              <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-            )}
+            element={<SignIn setUser={setUser} msgAlert={msgAlert} />}
           />
-          <AuthenticatedRoute
-            user={user}
-            path='/sign-out'
-            render={() => (
-              <SignOut
-                msgAlert={this.msgAlert}
-                clearUser={this.clearUser}
-                user={user}
-              />
-            )}
-          />
-          <AuthenticatedRoute
-            user={user}
+          <Route
             path='/change-password'
-            render={() => (
-              <ChangePassword msgAlert={this.msgAlert} user={user} />
-            )}
+            element={<ChangePassword user={user} msgAlert={msgAlert} />}
           />
-        </main>
-      </Fragment>
-    )
-  }
+          <Route
+            path='/sign-out/'
+            element={
+              <SignOut user={user} clearUser={clearUser} msgAlert={msgAlert} />
+            }
+          />
+          <Route
+            path='/profiles/:id'
+            element={<Profile user={user} msgAlert={msgAlert} />}
+          />
+          <Route
+            path='/profiles/:id/edit'
+            element={<ProfileEdit user={user} msgAlert={msgAlert} />}
+          />
+          <Route
+            path='/profiles/create'
+            element={<ProfileCreate user={user} setUser={setUser} msgAlert={msgAlert} />}
+          />
+
+          <Route path='/chat' element={<Chat user={user} />} />
+        </Routes>
+      </main>
+    </>
+  )
 }
 
 export default App

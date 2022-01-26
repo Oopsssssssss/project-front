@@ -1,87 +1,84 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-
+import React, { useState } from 'react'
+import { Navigate } from 'react-router-dom'
+// Access the signUp function through a `named import`
 import { changePassword } from '../../api/auth'
-import { changePasswordSuccess, changePasswordFailure } from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import {
+  changePasswordSuccess,
+  changePasswordFailure
+} from '../AutoDismissAlert/messages'
 
-class ChangePassword extends Component {
-  constructor (props) {
-    super(props)
+const ChangePassword = ({ user, msgAlert }) => {
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [shouldNavigate, setShouldNavigate] = useState(false)
 
-    this.state = {
-      oldPassword: '',
-      newPassword: ''
-    }
-  }
+  const onChangePassword = async event => {
+    event.preventDefault()
 
-handleChange = (event) =>
-  this.setState({
-    [event.target.name]: event.target.value
-  })
-
-onChangePassword = (event) => {
-  event.preventDefault()
-
-  const { msgAlert, history, user } = this.props
-
-  changePassword(this.state, user)
-    .then(() =>
+    try {
+      // Call the signUp function to make an axios request
+      // to create a user
+      await changePassword(oldPassword, newPassword, user)
       msgAlert({
         heading: 'Change Password Success',
         message: changePasswordSuccess,
         variant: 'success'
       })
-    )
-    .then(() => history.push('/'))
-    .catch((error) => {
-      this.setState({ oldPassword: '', newPassword: '' })
+      setShouldNavigate(true)
+    } catch (error) {
       msgAlert({
         heading: 'Change Password Failed with error: ' + error.message,
         message: changePasswordFailure,
         variant: 'danger'
       })
-    })
-}
+      console.error(error)
+      setOldPassword('')
+      setNewPassword('')
+    }
+  }
 
-render () {
-  const { oldPassword, newPassword } = this.state
+  if (shouldNavigate) {
+    return <Navigate to='/' />
+  }
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Change Password</h3>
-        <Form onSubmit={this.onChangePassword}>
-          <Form.Group controlId='oldPassword'>
-            <Form.Label>Old password</Form.Label>
+        <h3>Sign In</h3>
+
+        <Form onSubmit={onChangePassword}>
+          <Form.Group className='mb-3' controlId='email'>
+            <Form.Label>Old Password</Form.Label>
             <Form.Control
-              required
-              name='oldPassword'
-              value={oldPassword}
               type='password'
               placeholder='Old Password'
-              onChange={this.handleChange}
+              required
+              value={oldPassword}
+              onChange={event => setOldPassword(event.target.value)}
             />
           </Form.Group>
-          <Form.Group controlId='newPassword'>
+
+          <Form.Group className='mb-3' controlId='password'>
             <Form.Label>New Password</Form.Label>
             <Form.Control
               required
-              name='newPassword'
               value={newPassword}
               type='password'
               placeholder='New Password'
-              onChange={this.handleChange}
+              onChange={event => setNewPassword(event.target.value)}
             />
           </Form.Group>
-          <Button variant='primary' type='submit'>Submit</Button>
+
+          <Button variant='primary' type='submit'>
+            Submit
+          </Button>
         </Form>
       </div>
     </div>
   )
 }
-}
 
-export default withRouter(ChangePassword)
+export default ChangePassword
