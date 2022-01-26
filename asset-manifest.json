@@ -1,20 +1,29 @@
 {
   "files": {
-    "main.css": "/project-front/static/css/main.81148193.chunk.css",
-    "main.js": "/project-front/static/js/main.8b4aa4a8.chunk.js",
-    "main.js.map": "/project-front/static/js/main.8b4aa4a8.chunk.js.map",
+    "main.css": "/project-front/static/css/main.bbce002a.chunk.css",
+    "main.js": "/project-front/static/js/main.3e8b5228.chunk.js",
+    "main.js.map": "/project-front/static/js/main.3e8b5228.chunk.js.map",
     "runtime-main.js": "/project-front/static/js/runtime-main.bcf22cb1.js",
     "runtime-main.js.map": "/project-front/static/js/runtime-main.bcf22cb1.js.map",
-    "static/js/2.648a6a70.chunk.js": "/project-front/static/js/2.648a6a70.chunk.js",
-    "static/js/2.648a6a70.chunk.js.map": "/project-front/static/js/2.648a6a70.chunk.js.map",
+    "static/js/2.fa1c9030.chunk.js": "/project-front/static/js/2.fa1c9030.chunk.js",
+    "static/js/2.fa1c9030.chunk.js.map": "/project-front/static/js/2.fa1c9030.chunk.js.map",
     "index.html": "/project-front/index.html",
-    "static/css/main.81148193.chunk.css.map": "/project-front/static/css/main.81148193.chunk.css.map",
-    "static/js/2.648a6a70.chunk.js.LICENSE.txt": "/project-front/static/js/2.648a6a70.chunk.js.LICENSE.txt"
+    "static/css/main.bbce002a.chunk.css.map": "/project-front/static/css/main.bbce002a.chunk.css.map",
+    "static/js/2.fa1c9030.chunk.js.LICENSE.txt": "/project-front/static/js/2.fa1c9030.chunk.js.LICENSE.txt",
+    "static/media/Message2.png": "/project-front/static/media/Message2.a5df28fa.png",
+    "static/media/Message3.png": "/project-front/static/media/Message3.b8224785.png",
+    "static/media/Message4.png": "/project-front/static/media/Message4.ad0083c7.png",
+    "static/media/Message6.png": "/project-front/static/media/Message6.7db2bf97.png",
+    "static/media/Texting 1.png": "/project-front/static/media/Texting 1.3fe4b4d3.png",
+    "static/media/Texting 3.jpeg": "/project-front/static/media/Texting 3.5359350f.jpeg",
+    "static/media/Texting 4.jpeg": "/project-front/static/media/Texting 4.a0885984.jpeg",
+    "static/media/Texting 5.jpeg": "/project-front/static/media/Texting 5.013fae61.jpeg",
+    "static/media/Texting 6.webp": "/project-front/static/media/Texting 6.a32ec01f.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.bcf22cb1.js",
-    "static/js/2.648a6a70.chunk.js",
-    "static/css/main.81148193.chunk.css",
-    "static/js/main.8b4aa4a8.chunk.js"
+    "static/js/2.fa1c9030.chunk.js",
+    "static/css/main.bbce002a.chunk.css",
+    "static/js/main.3e8b5228.chunk.js"
   ]
 }
