@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 // import queryString from 'query-string'
 import { io } from 'socket.io-client'
 import './chat.scss'
@@ -13,6 +14,10 @@ const socket = io('http://localhost:4741', {
 })
 
 const Chat = ({ user }) => {
+  if (!user || !user.profile) {
+    return <Navigate to='/' />
+  }
+
   const [chat, setChat] = useState([])
   const [chatState, setChatState] = useState({
     message: '',

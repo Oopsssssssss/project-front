@@ -14,14 +14,17 @@ const ProfileCreate = ({ user, setUser, msgAlert }) => {
   const [aboutMe, setAboutMe] = useState('')
   const [shouldNavigate, setShouldNavigate] = useState(false)
 
+  if (!user) {
+    return <Navigate to='/' />
+  }
+
   const onProfileCreate = async event => {
     event.preventDefault()
 
     try {
-      await createProfile(user, name, aboutMe)
-        .then(res => {
-          user.profile = res.data.profile
-        })
+      await createProfile(user, name, aboutMe).then(res => {
+        user.profile = res.data.profile
+      })
       msgAlert({
         heading: 'Profile Creation Success',
         message: profileCreateSuccess,

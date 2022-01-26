@@ -15,7 +15,11 @@ const ProfileEdit = ({ user, msgAlert }) => {
   const [updated, setUpdated] = useState(false)
   const { id } = useParams()
 
-  const onProfileEdit = async (event) => {
+  if (!user) {
+    return <Navigate to='/' />
+  }
+
+  const onProfileEdit = async event => {
     event.preventDefault()
 
     try {
@@ -54,7 +58,7 @@ const ProfileEdit = ({ user, msgAlert }) => {
               placeholder='Profile Name'
               required
               value={name}
-              onChange={(event) => setName(event.target.value)}
+              onChange={event => setName(event.target.value)}
             />
           </Form.Group>
 
@@ -65,7 +69,7 @@ const ProfileEdit = ({ user, msgAlert }) => {
               value={aboutMe}
               type='aboutMe'
               placeholder='Tell us a bit about yourself'
-              onChange={(event) => setAboutMe(event.target.value)}
+              onChange={event => setAboutMe(event.target.value)}
             />
           </Form.Group>
 
