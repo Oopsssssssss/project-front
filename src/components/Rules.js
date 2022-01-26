@@ -3,7 +3,7 @@ import gif from './gif/gif.gif'
 const Rules = () => {
   return (
     <>
-      <h1>No cursing please</h1>
+      <h1>Please be nice</h1>
       <img
         src={gif}
         alt='new'
