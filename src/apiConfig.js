@@ -4,7 +4,7 @@ let apiUrl
 const apiUrls = {
   // TODO: change production url after launch party
 
-  production: 'https://aqueous-atoll-85096.herokuapp.com',
+  production: 'https://thawing-meadow-43090.herokuapp.com',
   development: 'http://localhost:4741'
 }
 

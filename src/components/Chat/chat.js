@@ -3,13 +3,14 @@ import { Navigate } from 'react-router-dom'
 // import queryString from 'query-string'
 import { io } from 'socket.io-client'
 import './chat.scss'
+import apiUrl from '../../apiConfig'
 // import TextContainer from './TextContainer'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
 // this is where we will add the heroku app link
-const socket = io('http://localhost:4741', {
+const socket = io(apiUrl, {
   withCredentials: true
 })
 

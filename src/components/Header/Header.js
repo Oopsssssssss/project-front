@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link, NavLink } from 'react-router-dom'
-// import { io } from 'socket.io-client'
 
 const authenticatedOptions = ({ user }) => {
   if (user.profile) {
