@@ -17,7 +17,9 @@ const authenticatedOptions = ({ user }) => {
         <NavLink to='/chat' className='nav-link'>
           ChatRoom
         </NavLink>
-        <NavLink to={`profiles/${user.profile._id}`} className='nav-link'>My Profile</NavLink>
+        <NavLink to={`profiles/${user.profile._id}`} className='nav-link'>
+          My Profile
+        </NavLink>
       </Fragment>
     )
   } else {
@@ -52,6 +54,9 @@ const alwaysOptions = (
   <Fragment>
     <NavLink to='/' className='nav-link'>
       Home
+    </NavLink>
+    <NavLink to='/rules' className='nav-link'>
+      Rules
     </NavLink>
   </Fragment>
 )
