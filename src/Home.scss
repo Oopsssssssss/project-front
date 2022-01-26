@@ -28,6 +28,7 @@ background-image: linear-gradient(
  h2 {
   font-family: 'Mochiy Pop P One', sans-serif;
 }
+
 .title {
     position: absolute;
     left:200px;
@@ -69,6 +70,24 @@ border-radius: 10px;
 }
 .Title {
    font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.Title:before {
+    content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: 0;
+right: 0;
+background-color: #fff;
+visibility: hidden;
+transition: all 0.3s ease-in-out;
+}
+
+.Title:hover:before {
+    visibility: visible;
+width: 100%;
+
 }
 .TitleDescription {
 font-family: 'Teko', sans-serif;
