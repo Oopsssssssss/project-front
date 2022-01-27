@@ -6,6 +6,7 @@ import { signIn } from '../../api/auth'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { signInSuccess, signInFailure } from '../AutoDismissAlert/messages'
+import '../auth/SignIn.scss'
 
 const SignIn = ({ setUser, msgAlert }) => {
   const [email, setEmail] = useState('')
@@ -71,7 +72,7 @@ const SignIn = ({ setUser, msgAlert }) => {
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>
+          <Button className='button-52' role='button'>
             Submit
           </Button>
         </Form>

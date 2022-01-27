@@ -58,7 +58,7 @@ const SignUp = ({ setUser, msgAlert }) => {
               placeholder='Enter email'
               required
               value={email}
-              onChange={event => setEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
             />
           </Form.Group>
 
@@ -69,7 +69,7 @@ const SignUp = ({ setUser, msgAlert }) => {
               value={password}
               type='password'
               placeholder='Password'
-              onChange={event => setPassword(event.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </Form.Group>
 
@@ -80,12 +80,12 @@ const SignUp = ({ setUser, msgAlert }) => {
               value={passwordConfirmation}
               type='password'
               placeholder='Confirm Password'
-              onChange={event => setPasswordConfirmation(event.target.value)}
+              onChange={(event) => setPasswordConfirmation(event.target.value)}
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>
-            Submit
+          <Button className='button-52' role='button'>
+           Submit
           </Button>
         </Form>
       </div>
