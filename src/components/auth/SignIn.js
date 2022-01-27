@@ -72,7 +72,7 @@ const SignIn = ({ setUser, msgAlert }) => {
             />
           </Form.Group>
 
-          <Button className='button-52' role='button'>
+          <Button variant='primary' type='submit'>
             Submit
           </Button>
         </Form>
